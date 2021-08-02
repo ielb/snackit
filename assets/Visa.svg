@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="48" height="48" fill="none"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.839" y1="0.344" x2="0.142" y2="0.663" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#222357"/>
+      <stop offset="1" stop-color="#254aa5"/>
+    </linearGradient>
+  </defs>
+  <g id="Repeat_Grid_1" data-name="Repeat Grid 1" clip-path="url(#clip-path)">
+    <g transform="translate(-670 -1570)">
+      <g id="Visa" transform="translate(670 1570)" clip-path="url(#clip-path)">
+        <g id="Visa-2" data-name="Visa">
+          <circle id="Oval" cx="24" cy="24" r="24" fill="#fff"/>
+          <g id="path10273" transform="translate(9.6 29.522)">
+            <path id="path-2" d="M-18.788,9.356c2.3,0,3.911-1.23,3.924-2.991C-14.848,5.06-16.017,4.335-16.9,3.9c-.9-.444-1.208-.728-1.205-1.125.007-.6.7-.876,1.39-.886h.094a4.729,4.729,0,0,1,2.245.551l.046.022.42-1.983A6.942,6.942,0,0,0-16.489,0c-2.447,0-4.035,1.215-4.044,3.1-.006,1.428,1.166,2.049,2.108,2.547.62.328,1.156.612,1.147,1.04-.006.291-.268.663-.986.757a3.011,3.011,0,0,1-.4.024,4.524,4.524,0,0,1-1.89-.428l-.409,1.919A6.211,6.211,0,0,0-18.788,9.356Zm-8.079-.165h1.984a1.056,1.056,0,0,0,.988-.664L-20.412.141h-2.437l-.485,1.351h-2.978L-26.594.141h-2.148l1.875,9.05ZM-24,3.348l-1.223,3.4-.7-3.4Zm9.77,5.844h2.322L-9.988.141h-2.323L-14.232,9.19Zm3.319,0h2.439l2.417-6.16.977,5.238a1.089,1.089,0,0,0,1.071.922H-.055L0,8.929a9.79,9.79,0,0,1-2.291-.77.989.989,0,0,1-.552-.8L-4.7.141H-7.15L-10.912,9.19Z" transform="translate(0.04 -0.083) rotate(180)" fill="url(#linear-gradient)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
