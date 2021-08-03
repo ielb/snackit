@@ -7,7 +7,18 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+   Widget? widgett;
+  @override
+  void initState() { 
+    super.initState();
+    widgett=Image.asset( Config.sanwidish);
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +35,14 @@ class MyApp extends StatelessWidget {
         "/setting" :(context) => HomePage(),
         "/welcome" :(context) =>WelcomePage()
       },
-      home:  WelcomePage(),
+      home:  FutureBuilder(
+        future: Future.delayed(Duration(seconds: 2)),
+        builder: (context,snap){
+          if(snap.connectionState ==ConnectionState.waiting){
+            return SplachPage();
+          }else
+            return WelcomePage();
+      },),
     );
   }
 }

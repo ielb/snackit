@@ -2,18 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:snackit/pages/screens.dart';
 
 class Input extends StatelessWidget {
-  Input(this.hint,this.icon,this.obscure,this.prefixIcon);
+  Input(this.controller,this.hint,this.icon,this.obscure,this.prefixIcon);
 
   final String hint;
   final Widget icon;
   final Widget? prefixIcon;
   final bool obscure;
+  final  TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
+      height: 70,
       width: Config.getWidth(context)*.8,
-      child: TextField(
+      child: TextFormField(
+        validator: (v){
+          if(v!.isEmpty){
+            switch (hint){
+              case 'Email':
+                return "Email is required";
+              case 'Password':
+                return "Password is required";
+              case 'Confirme password':
+                return "Confirme Password is required";
+            }
+          }else{
+            switch (hint){
+              case 'Email':
+              if(!Config.isEmail(controller!.text))            
+                return "Incorrect email format";
+                break;
+              case 'Password':
+              if(!Config.pwdValidator(v))
+                return "Password is short";
+              break;
+              case 'Confirme password':
+              if(!Config.pwdValidator(v))
+                return "Confirme Password is short";
+            }
+          }
+        },
+        controller: controller,
         obscureText: obscure,
         decoration: InputDecoration(
           filled: true,
@@ -22,8 +50,8 @@ class Input extends StatelessWidget {
           errorBorder:OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: Colors.red,
-              width: 3,
+              color: Colors.red.withOpacity(0.5),
+              width: 1.5,
             ),
           ), 
           hintStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16,color: Config.darkGray),
@@ -35,6 +63,7 @@ class Input extends StatelessWidget {
               width: 1.5,
             ),
           ) ,
+          
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(

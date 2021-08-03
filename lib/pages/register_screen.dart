@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:snackit/widgets/input_widget.dart';
 import 'screens.dart';
 
@@ -11,15 +12,19 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-TextEditingController? _phoneNumberController ;
+TextEditingController? _phoneNumberController,_emailController,_passwordController,_confirmePasswrodController ;
   bool _showPassword =true;
   bool _showPassword2 =true;
   bool ontap = false;
   String text = ""; 
   int maxLength = 10;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     _phoneNumberController = TextEditingController();
+    _emailController= TextEditingController();
+    _passwordController= TextEditingController();
+    _confirmePasswrodController= TextEditingController();
     super.initState();
   }
   @override
@@ -39,139 +44,171 @@ TextEditingController? _phoneNumberController ;
           height: Config.getHeight(context),
           width: Config.getWidth(context),
           child: Column(
-            children:[
-                MyAnimation(Container(
-                  margin: EdgeInsets.only(top: Config.getHeight(context)*.03,bottom: Config.getHeight(context)*.00808),
-                  child: Input("Email", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.email,size: 18,)), false, null)),
-                ),
-                MyAnimation( GestureDetector(
-                    onTap: (){
-                      setState(() {
-                          ontap = !ontap;
-                        });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
-                      height: 60,
-                      width: Config.getWidth(context)*.8,
-                      decoration: BoxDecoration(
-                        color: Config.gray,
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: ontap ? Config.orange : Config.gray,
-                          width: 1.5
-                        )
-                      ), 
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 60,
-                            width: 60,
-                            padding: EdgeInsets.only(left: 15,right: 10),
-                                  child: Image.asset("assets/flags/ma.png",fit: BoxFit.contain,),
-                          ),
-                          Text("+212",style: TextStyle(color: Config.darkGray,fontSize: 16,fontWeight: FontWeight.w400),),
-                          Container(
-                            height: 60,
-                            width:   Config.getWidth(context)*.5,
-                            child: TextField(
-                              controller: _phoneNumberController,
-                              onChanged: (String newVal) {
-                                if(newVal.length <= maxLength){
-                                  text = newVal;
-                                }else{
-                                  _phoneNumberController!.value = new TextEditingValue(
-                                    text: text,
-                                    selection: new TextSelection(
-                                      baseOffset: maxLength,
-                                      extentOffset: maxLength,
-                                      affinity: TextAffinity.downstream,
-                                      isDirectional: false
-                                    ),
-                                    composing: new TextRange(
-                                      start: 0, end: maxLength
-                                    )
-                                  );
-                                  _phoneNumberController!.text = text;
-                                } 
-                              },
-                              onSubmitted: (v){
-                                setState(() {
-                                  ontap = !ontap;
-                                });
-                              },
-                              onTap: (){
-                                setState(() {
-                                  ontap = !ontap;
-                                });
-                              },
-                              keyboardType: TextInputType.number,
-                              decoration:  InputDecoration(
-                                filled: true,
-                                hoverColor: Config.gray,
-                                fillColor: Config.gray,
-                                errorBorder:OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 3,
-                                  ),
-                                ), 
-                                hintStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16,color: Config.darkGray),
-                                hintText: 'Phone number',
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  borderSide: BorderSide(
-                                    color: Config.gray,
-                                    width: 1.5,
-                                  ),
-                                ) ,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  borderSide: BorderSide(
-                                    color: Config.gray,
-                                    width: 1.5,
-                                  ),
+            children: [
+              Form(
+                key: _formKey,
+                child: Column(
+                  children:[
+                      MyAnimation(Container(
+                        margin: EdgeInsets.only(top: Config.getHeight(context)*.03,bottom: Config.getHeight(context)*.00808),
+                        child: Input(_emailController,"Email", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.email,size: 18,)), false, null)),
+                      ),
+                      MyAnimation(
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                                ontap = !ontap;
+                              });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
+                            height: 65,
+                            width: Config.getWidth(context)*.8,
+                            decoration: BoxDecoration(
+                              color: Config.gray,
+                              borderRadius: BorderRadius.circular(14),
+                              border: Border.all(
+                                color: ontap ? Config.orange : Config.gray,
+                                width: 1.5
+                              )
+                            ), 
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 60,
+                                  width: 60,
+                                  padding: EdgeInsets.only(left: 15,right: 10),
+                                        child: Image.asset("assets/flags/ma.png",fit: BoxFit.contain,),
                                 ),
-                              ) ,
-                            ),
-                          )
-                        ],
-                      )
+                                Text("+212",style: TextStyle(color: Config.darkGray,fontSize: 16,fontWeight: FontWeight.w400),),
+                                Container(
+                                  height: 60,
+                                  width:   Config.getWidth(context)*.5,
+                                  child: TextFormField(
+                                    controller: _phoneNumberController,
+                                    onChanged: (String newVal) {
+                                      if(newVal.length <= maxLength){
+                                        text = newVal;
+                                      }else{
+                                        _phoneNumberController!.value = new TextEditingValue(
+                                          text: text,
+                                          selection: new TextSelection(
+                                            baseOffset: maxLength,
+                                            extentOffset: maxLength,
+                                            affinity: TextAffinity.downstream,
+                                            isDirectional: false
+                                          ),
+                                          composing: new TextRange(
+                                            start: 0, end: maxLength
+                                          )
+                                        );
+                                        _phoneNumberController!.text = text;
+                                      } 
+                                    },
+                                    validator: (s){
+                                      if(s!.isEmpty){
+                                        return 'Phone number is required';
+                                      }
+                                      else{
+                                        if(s.length<10){
+                                          return "Please provide a correct number";
+                                        }else{
+                                          if(!Config.isNumber(_phoneNumberController!.text)){
+                                            return "Incorrect number format";
+                                          }
+                                        }
+                                      }
+                                    },
+                                    onFieldSubmitted: (v){
+                                      setState(() {
+                                        ontap = !ontap;
+                                      });
+                                    },
+                                    onTap: (){
+                                      setState(() {
+                                        ontap = !ontap;
+                                      });
+                                    },
+                                    keyboardType: TextInputType.number,
+                                    decoration:  InputDecoration(
+                                      filled: true,
+                                      hoverColor: Config.gray,
+                                      fillColor: Config.gray,
+                                      errorBorder:OutlineInputBorder(
+                                        gapPadding: 1,
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 1.5,
+                                        ),
+                                      ), 
+                                      hintStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16,color: Config.darkGray),
+                                      hintText: 'Phone number',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: Config.gray,
+                                          width: 1.5,
+                                        ),
+                                      ) ,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: Config.gray,
+                                          width: 1.5,
+                                        ),
+                                      ),
+                                    ) ,
+                                  ),
+                                )
+                              ],
+                            )
+                          ),
+                        )),
+                        MyAnimation(
+                        Container(margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
+                        child: Input(_passwordController,"Password", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.lock,size: 18,)), _showPassword, GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showPassword = !_showPassword;
+                              });
+                            },
+                          child: Icon(
+                            _showPassword ? Icons.visibility : Icons.visibility_off,color: Config.darkGray,
+                          ),
+                        ),)),
+                      ),
+                    MyAnimation(
+                      Container(
+                        margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
+                        child: Input(_confirmePasswrodController,"Confirme password", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.lock,size: 18,)), _showPassword2, GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showPassword2 = !_showPassword2;
+                              });
+                            },
+                          child: Icon(
+                            _showPassword ? Icons.visibility : Icons.visibility_off,color: Config.darkGray,
+                          ),))),
                     ),
-                  )),
-                  MyAnimation(
-                  Container(margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
-                  child: Input("Password", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.lock,size: 18,)), _showPassword, GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _showPassword = !_showPassword;
-                        });
-                      },
-                    child: Icon(
-                      _showPassword ? Icons.visibility : Icons.visibility_off,color: Config.darkGray,
-                    ),
-                  ),)),
+                    
+                  ]
                 ),
-              MyAnimation(
-                Container(
-                  margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
-                  child: Input("Confirme password", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.lock,size: 18,)), _showPassword2, GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _showPassword2 = !_showPassword2;
-                        });
-                      },
-                    child: Icon(
-                      _showPassword ? Icons.visibility : Icons.visibility_off,color: Config.darkGray,
-                    ),))),
               ),
+              
                   MyAnimation(Container(
                     height:Config.getHeight(context)*.07 ,
                     width: Config.getWidth(context)*.65,
                     child: ElevatedButton(
                     onPressed:(){
-                      Navigator.pushReplacementNamed(context,"/register");
+                     // Navigator.pushReplacementNamed(context,"/register");
+                      if( _formKey.currentState!.validate()){
+                        if(_passwordController!.value!= _confirmePasswrodController!.value||!Config.pwdValidator(_passwordController!.text)||!Config.pwdValidator(_confirmePasswrodController!.text)){
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Password doesn't match or is short "),
+                          ));
+                        }
+                      }
                     },
                     style:OutlinedButton.styleFrom(
                       backgroundColor:Config.orange,
@@ -222,8 +259,7 @@ TextEditingController? _phoneNumberController ;
                 ),
               ]
             )),
-      
-            ]
+            ],
           ),
         ),
       ),

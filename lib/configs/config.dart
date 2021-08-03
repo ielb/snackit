@@ -6,6 +6,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Config {
 
+    static bool isEmail(String em) {
+    String p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(p);
+
+    return regExp.hasMatch(em);
+  }
+  static bool pwdValidator(String value) {
+    if (value.length < 8) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  static bool isNumber(String em) {
+    String p =
+        r'^(?:(?:(?:\+|00)212[\s]?(?:[\s]?\(0\)[\s]?)?)|0){1}(?:5[\s.-]?[2-3]|[5-7][\s.-]?[13-9]){1}[0-9]{1}(?:[\s.-]?\d{2}){3}$';
+    RegExp regExp = new RegExp(p);
+
+    return regExp.hasMatch(em);
+  }
+
 
 
   // Colors 

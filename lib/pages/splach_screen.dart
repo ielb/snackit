@@ -17,8 +17,12 @@ class SplachPage extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        child: Center(
-          child: CircularProgressIndicator(color: Config.orange,),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("Snack It",style: TextStyle(color: Config.white,fontSize: 28,fontWeight: FontWeight.bold)),
+            CircularProgressIndicator(color: Config.orange,),
+          ],
         ),
       )
     );
