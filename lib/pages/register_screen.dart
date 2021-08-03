@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:snackit/widgets/input_widget.dart';
 import 'screens.dart';
 
@@ -50,7 +51,7 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                 child: Column(
                   children:[
                       MyAnimation(Container(
-                        margin: EdgeInsets.only(top: Config.getHeight(context)*.03,bottom: Config.getHeight(context)*.00808),
+                        margin: EdgeInsets.only(top: Config.getHeight(context)*.01),
                         child: Input(_emailController,"Email", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.email,size: 18,)), false, null)),
                       ),
                       MyAnimation(
@@ -61,8 +62,8 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                               });
                           },
                           child: Container(
-                            margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
-                            height: 65,
+                            margin: EdgeInsets.only(bottom: Config.getHeight(context)*.005),
+                            height: 60,
                             width: Config.getWidth(context)*.8,
                             decoration: BoxDecoration(
                               color: Config.gray,
@@ -75,12 +76,12 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                             child: Row(
                               children: [
                                 Container(
-                                  height: 60,
-                                  width: 60,
+                                  height: 50,
+                                  width: 50,
                                   padding: EdgeInsets.only(left: 15,right: 10),
                                         child: Image.asset("assets/flags/ma.png",fit: BoxFit.contain,),
                                 ),
-                                Text("+212",style: TextStyle(color: Config.darkGray,fontSize: 16,fontWeight: FontWeight.w400),),
+                                Text("+212",style: TextStyle(color: Config.darkGray,fontSize: 15,fontWeight: FontWeight.w400),),
                                 Container(
                                   height: 60,
                                   width:   Config.getWidth(context)*.5,
@@ -166,7 +167,7 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                           ),
                         )),
                         MyAnimation(
-                        Container(margin: EdgeInsets.only(bottom: Config.getHeight(context)*.015),
+                        Container(
                         child: Input(_passwordController,"Password", Container(margin:EdgeInsets.only(left: 10,right:10 ),child: Icon(MyIcons.lock,size: 18,)), _showPassword, GestureDetector(
                             onTap: () {
                               setState(() {
@@ -203,11 +204,13 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                     onPressed:(){
                      // Navigator.pushReplacementNamed(context,"/register");
                       if( _formKey.currentState!.validate()){
-                        if(_passwordController!.value!= _confirmePasswrodController!.value||!Config.pwdValidator(_passwordController!.text)||!Config.pwdValidator(_confirmePasswrodController!.text)){
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Password doesn't match or is short "),
-                          ));
-                        }
+                        // if(_passwordController!.value!= _confirmePasswrodController!.value||!Config.pwdValidator(_passwordController!.text)||!Config.pwdValidator(_confirmePasswrodController!.text)){
+                        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //     content: Text("Password doesn't match or is short "),
+                        //   ));
+                        // }
+                        
+                        Navigator.pushNamed(context,'/verify');
                       }
                     },
                     style:OutlinedButton.styleFrom(
@@ -218,7 +221,7 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                         borderRadius: BorderRadius.circular(14.0),
                       )
                     ),
-                  child: Center(child: Text( "Create an account",style:  TextStyle(color: Config.black,fontSize: 20,fontWeight: FontWeight.w400),)),
+                  child: Center(child: Text( "Sign Up",style:  TextStyle(color: Config.black,fontSize: 20,fontWeight: FontWeight.w400),)),
                 ),
                 )),      
             MyAnimation(Row(
@@ -229,18 +232,18 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                   onPressed: (){
                     Navigator.pushNamed(context, "/login");
                   },
-                  child: Text("Sign In",style: TextStyle(fontSize: 22,color: Config.orange,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),))
+                  child: Text("Sign In",style: TextStyle(fontSize: 20,color: Config.orange,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),))
               ],
             )),
             MyAnimation(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
-                  child: Divider(color: Config.darkGray,thickness: 1.5,indent: 60,endIndent: 10,)
+                  child: Divider(color: Config.darkGray,thickness: 0.5,indent: 60,endIndent: 10,)
                 ),       
                 Text("OR",style: TextStyle(fontSize: 16,color: Config.darkGray,fontWeight: FontWeight.w400)), 
                 Expanded(
-                  child:  Divider(color: Config.darkGray,thickness: 1.5,indent: 10,endIndent: 60)
+                  child:  Divider(color: Config.darkGray,thickness: 0.5,indent: 10,endIndent: 60)
                 ),
               ]
             )),
@@ -250,12 +253,29 @@ TextEditingController? _phoneNumberController,_emailController,_passwordControll
                 GestureDetector(
                   onTap: (){},
                   child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Config.black.withOpacity(0.2),
+                        spreadRadius: 0.1,
+                        blurRadius: 30,
+                        offset:  Offset(3,1).scale(5,6)
+                      )
+                    ]),
                     child: Config.facebook
                   ),
                 ),
                 GestureDetector(
                   onTap: (){},
-                  child: Config.google,
+                  child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Config.black.withOpacity(0.2),
+                        spreadRadius: 0.1,
+                        blurRadius: 30,
+                        offset:  Offset(3,1).scale(5,6)
+                      )
+                    ]),
+                    child: Config.google),
                 ),
               ]
             )),

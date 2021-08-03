@@ -14,7 +14,7 @@ class MyAnimation extends StatelessWidget {
             builder: (BuildContext context,  value, Widget? child) {
               return Opacity(
                 opacity: value,
-                child: Padding(padding: EdgeInsets.only(top:value*15),child: child,),
+                child: Padding(padding: EdgeInsets.all(value*8),child: child,),
               );
             },
         );

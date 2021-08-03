@@ -80,7 +80,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   onPressed: (){
                     Navigator.pushNamed(context, "/login");
                   },
-                  child: Text("Sign In",style: TextStyle(fontSize: 22,color: Config.orange,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),))
+                  child: Text("Sign In",style: TextStyle(fontSize: 20,color: Config.orange,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),))
               ],
             )),
             SizedBox(height: Config.getHeight(context)*.02,),
@@ -88,11 +88,11 @@ class _WelcomePageState extends State<WelcomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
-                  child: Divider(color: Config.white,thickness: 1.5,indent: 20,endIndent: 20,)
+                  child: Divider(color: Config.white,thickness: 0.5,indent: 20,endIndent: 20,)
                 ),       
                 Text("OR",style: TextStyle(fontSize: 16,color: Config.white,fontWeight: FontWeight.w400)), 
                 Expanded(
-                  child:  Divider(color: Config.white,thickness: 1.5,indent: 20,endIndent: 20)
+                  child:  Divider(color: Config.white,thickness: 0.5,indent: 20,endIndent: 20)
                 ),
               ]
             )),
@@ -100,8 +100,37 @@ class _WelcomePageState extends State<WelcomePage> {
             MyAnimation(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(onPressed: (){}, icon: Config.facebook,iconSize: 70,),
-                IconButton(onPressed: (){}, icon:Config.google,iconSize: 70,)
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context,'/home');
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Config.black.withOpacity(0.4),
+                        spreadRadius: 0.1,
+                        blurRadius: 30,
+                        offset:  Offset(3,1).scale(5,6)
+                      )
+                    ]),
+                    child: Config.facebook
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context,'/home');
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Config.black.withOpacity(0.4),
+                        spreadRadius: 0.1,
+                        blurRadius: 30,
+                        offset:  Offset(3,1).scale(5,6)
+                      )
+                    ]),
+                    child: Config.google),
+                ),
               ]
             )),
           ],

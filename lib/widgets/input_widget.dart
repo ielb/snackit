@@ -5,7 +5,7 @@ class Input extends StatelessWidget {
   Input(this.controller,this.hint,this.icon,this.obscure,this.prefixIcon);
 
   final String hint;
-  final Widget icon;
+  final Widget? icon;
   final Widget? prefixIcon;
   final bool obscure;
   final  TextEditingController? controller;
@@ -75,7 +75,7 @@ class Input extends StatelessWidget {
           prefixIcon: Padding(
             child: IconTheme(
               data: IconThemeData(color: Config.darkGray),
-              child: icon,
+              child: icon ?? Container(),
             ),
             padding: EdgeInsets.only(left: 10, right: 10),
           ),

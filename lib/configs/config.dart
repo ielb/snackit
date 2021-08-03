@@ -14,7 +14,7 @@ class Config {
     return regExp.hasMatch(em);
   }
   static bool pwdValidator(String value) {
-    if (value.length < 8) {
+    if (value.length <= 8) {
       return false;
     } else {
       return true;

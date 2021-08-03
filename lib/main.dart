@@ -25,12 +25,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         "/home" :(context) => HomePage(),
-        "/login" :(context) => HomePage(),
+        "/login" :(context) => LoginPage(),
         "/register" :(context) => RegisterPage(),
         "/user" :(context) => HomePage(),
         "/snack" :(context) => HomePage(),
-        "/forget_psd" :(context) => HomePage(),
-        "/verify" :(context) => HomePage(),
+        "/forget_password" :(context) => ForgetPasswordPage(),
+        "/verify" :(context) => VerifyPage(),
         "/map" :(context) => HomePage(),
         "/setting" :(context) => HomePage(),
         "/welcome" :(context) =>WelcomePage()
