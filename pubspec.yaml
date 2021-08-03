@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: ^0.22.0
   get: ^4.3.4
   shared_preferences: ^2.0.6
+  intl_phone_field: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +46,7 @@ flutter:
     - images/sandwish.jpg
     - images/sandwish1.jpg
     - assets/Google.svg
+    - assets/flags/ma.png
     - assets/Facebook.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:snackit/configs/config.dart';
-// import 'screens.dart';
+import 'screens.dart';
 
 
 
@@ -18,9 +15,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return    
+    Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.only(right: 20,left:20 ),
         height: Config.getHeight(context),
         width: Config.getWidth(context),
         decoration: BoxDecoration(
@@ -32,9 +30,9 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         child: Column(
           children: [
-            Container(
+            MyAnimation(Container(
               alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(top: Config.getHeight(context)*.04,bottom:  Config.getHeight(context)*.1),
+              margin: EdgeInsets.only(top: Config.getHeight(context)*.06,bottom:  Config.getHeight(context)*.06),
               child: RichText(
                 text: TextSpan(
                   text: "Welcome to ",
@@ -47,20 +45,22 @@ class _WelcomePageState extends State<WelcomePage> {
                   ]
                 )
               )
-            ),
-            Container(
+            )),
+            MyAnimation(Container(
               child: Text(
                 welcome,
                 style:TextStyle(color: Config.white,fontSize: 20,fontWeight: FontWeight.w300)
               )
-            ),
-            SizedBox(height: Config.getHeight(context)*.05,),
-            Container(
-              margin: EdgeInsets.only(top: Config.getHeight(context)*.15,bottom: Config.getHeight(context)*.02),
+            )),
+            SizedBox(height: Config.getHeight(context)*.04,),
+            MyAnimation(Container(
+              margin: EdgeInsets.only(top: Config.getHeight(context)*.10,bottom: Config.getHeight(context)*.02),
               height:Config.getHeight(context)*.065 ,
               width: Config.getWidth(context)*.75,
               child: ElevatedButton(
-                onPressed:(){},
+                onPressed:(){
+                  Navigator.pushReplacementNamed(context,"/register");
+                },
                 style:OutlinedButton.styleFrom(
                   backgroundColor:Config.orange,
                   shadowColor: Config.black.withOpacity(0.6),
@@ -71,10 +71,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 child: Center(child: Text( "Create an account",style:  TextStyle(color: Config.black,fontSize: 20,fontWeight: FontWeight.w400),)),
               ),
-            ),
-            
-            
-            Row(
+            )),
+            MyAnimation(Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Already have an account ?",style: TextStyle(fontSize: 16,color: Config.white,fontWeight: FontWeight.w300)),
@@ -84,9 +82,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   },
                   child: Text("Sign In",style: TextStyle(fontSize: 22,color: Config.orange,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),))
               ],
-            ),
-            SizedBox(height: Config.getHeight(context)*.05,), 
-            Row(
+            )),
+            SizedBox(height: Config.getHeight(context)*.02,),
+            MyAnimation(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
@@ -97,18 +95,15 @@ class _WelcomePageState extends State<WelcomePage> {
                   child:  Divider(color: Config.white,thickness: 1.5,indent: 20,endIndent: 20)
                 ),
               ]
-            ),
-              SizedBox(height: Config.getHeight(context)*.03,), 
-            Row(
+            )),
+              SizedBox(height: Config.getHeight(context)*.01,),
+            MyAnimation(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(onPressed: (){}, icon: Config.facebook,iconSize: 70,),
                 IconButton(onPressed: (){}, icon:Config.google,iconSize: 70,)
               ]
-            )
-
-
-
+            )),
           ],
         ),
       ),

@@ -42,7 +42,7 @@ class MyIcons {
   static const IconData star = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData tick = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData trash = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData unread = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData email = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData up = IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData avatar = IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData keyboard = IconData(0xf11c, fontFamily: _kFontFam, fontPackage: _kFontPkg);

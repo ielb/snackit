@@ -24,8 +24,8 @@ class Config {
   //images
   static String sanwidish = "images/sandwish.jpg";
   static String sanwidish1 = "images/sandwish1.jpg";
-  static Widget facebook =  SvgPicture.asset("assets/Facebook.svg");
-  static Widget google = SvgPicture.asset("assets/Google.svg");
+  static Widget facebook =  SvgPicture.asset("assets/Facebook.svg",height: 60,width: 60,);
+  static Widget google = SvgPicture.asset("assets/Google.svg",height: 60,width: 60,);
   
 
 
